@@ -1,24 +1,15 @@
 {
   "name": "dotfiles",
   "displayName": "asp",
-  "version": "1.0.0",
+  "version": "0.1",
   "description": "Default meta docs for new projects",
   "longDescription": "Default long description",
   "categories": [
       "Other"
   ],
-  "main": "index.html",
-  "scripts": {
-    "test": "echo test",
-    "start": "echo start",
-    "dev": "echo dev",
-    "run": "echo run",
-    "build": "echo build"
-  },
   "keywords": ["Meta", "Docs"],
   "author": "alexpdev",
-  "url": "http://github.com/alexpdev/MinMaxObj",
-  "files": ["main.js"],
+  "url": "http://github.com/alexpdev/dotfiles",
   "email": "alexpdev@protonmail.com",
   "readme": "./README.md",
   "license": "GNU GPL v3"

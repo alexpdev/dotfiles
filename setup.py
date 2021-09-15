@@ -50,7 +50,7 @@ setup(
     url=INFO["url"],
     project_urls={"Source Code": "https://github.com/alexpdev/??????"},
     license=INFO["license"],
-    packages=find_packages(exclude=["tests", "env"]),
+    packages=find_packages(),
     include_package_data=True,
     install_requires=[],
     tests_require=["pytest"],
