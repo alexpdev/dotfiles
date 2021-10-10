@@ -1,4 +1,4 @@
-.PHONY: clean clean-test clean-pyc clean-build docs help
+.PHONY: clean docs help push release dist install lint
 .DEFAULT_GOAL := help
 
 define BROWSER_PYSCRIPT
@@ -26,52 +26,58 @@ BROWSER := python -c "$$BROWSER_PYSCRIPT"
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
-clean: clean-build clean-pyc clean-test ## remove all build, test, coverage and Python artifacts
+clean: clean-build ## remove all build, test, coverage and Python artifacts
 
 clean-build: ## remove build artifacts
 	rm -fr build/
 	rm -fr dist/
 	rm -fr .eggs/
-	find . -name '*.egg-info' -exec rm -fr {} +
-	find . -name '*.egg' -exec rm -f {} +
-
-clean-pyc: ## remove Python file artifacts
-	find . -name '*.pyc' -exec rm -f {} +
-	find . -name '*.pyo' -exec rm -f {} +
-	find . -name '*~' -exec rm -f {} +
-	find . -name '__pycache__' -exec rm -fr {} +
-
-clean-test: ## remove test and coverage artifacts
+	rm -fr *.egg-info
+	rm -fr *.egg
+	rm -f **.pyc
+	rm -f **.pyo
+	rm -f **~
+	rm -fr **/__pycache__
 	rm -fr .tox/
 	rm -f .coverage
 	rm -fr htmlcov/
 	rm -fr .pytest_cache
+	rm -f corbertura.xml
+	rm -f coverage.xml
+	rm -fr .codacy-coverage
 
 lint: ## check style with flake8
-	flake8 qtc tests
+	black {{projectname}}
+	black tests
+	isort {{projectname}}
+	isort tests
+	pylint {{projectname}} tests
+	pycodestyle {{projectname}} tests
+	pydocstyle {{projectname}} tests
+	pyroma .
+	bandit {{projectname}}/*
+	pep257 {{projectname}}
+	prospector {{projectname}}
+	prospector tests
 
 test: ## run tests quickly with the default Python
-	python setup.py test
-
-test-all: ## run tests on every Python version with tox
-	tox
+	pytest tests
+	pytest tests --cov
+	pytest tests --pylint
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source qtc setup.py test
-	coverage report -m
-	coverage html
-	$(BROWSER) htmlcov/index.html
+	coverage run -m pytest tests --cov --pylint
+	coverage xml -o coverage.xml
+
+push: lint docs clean test coverage
+	git add .
+	git commit -m "Updates to testing suit, style linting, bug fixes."
+	git push
+	bash codacy.sh report -r coverage.xml
 
 docs: ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/qtc.rst
-	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ qtc
-	$(MAKE) -C docs clean
-	$(MAKE) -C docs html
-	$(BROWSER) docs/_build/html/index.html
-
-servedocs: docs ## compile the docs watching for changes
-	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
+	rm -rf docs
+	mkdocs build
 
 release: dist ## package and upload a release
 	twine upload dist/*
@@ -79,6 +85,7 @@ release: dist ## package and upload a release
 dist: clean ## builds source and wheel package
 	python setup.py sdist
 	python setup.py bdist_wheel
+	python setup.py bdist_egg
 	ls -l dist
 
 install: clean ## install the package to the active Python's site-packages
