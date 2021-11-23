@@ -11,7 +11,6 @@
     "editor.cursorSurroundingLines": 5,
     "editor.find.cursorMoveOnType": false,
     "editor.find.loop": true,
-    "editor.find.seedSearchStringFromSelection": false,
     "editor.fontFamily": "Fira Code",
     "editor.fontSize": 12,
     "editor.fontLigatures": true,
@@ -47,8 +46,6 @@
     "editor.suggestSelection": "first",
     "terminal.integrated.allowChords": true,
     "terminal.integrated.altClickMovesCursor": false,
-    "terminal.integrated.shell.windows": "C:\\windows\\System32\\cmd.exe",
-    "terminal.integrated.defaultProfile.windows":"CMD",
     "editor.wordWrapColumn": 80,
     "[json]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"

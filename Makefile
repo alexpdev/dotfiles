@@ -22,7 +22,7 @@ endef
 export PRINT_HELP_PYSCRIPT
 
 BROWSER := python -c "$$BROWSER_PYSCRIPT"
-
+PROJECTNAME = {{projectname}}
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
@@ -47,17 +47,17 @@ clean-build: ## remove build artifacts
 	rm -fr .codacy-coverage
 
 lint: ## check style with flake8
-	black {{projectname}}
+	black ${PROJECTNAME}
 	black tests
-	isort {{projectname}}
+	isort ${PROJECTNAME}
 	isort tests
-	pylint {{projectname}} tests
-	pycodestyle {{projectname}} tests
-	pydocstyle {{projectname}} tests
+	pylint ${PROJECTNAME} tests
+	pycodestyle ${PROJECTNAME} tests
+	pydocstyle ${PROJECTNAME} tests
 	pyroma .
-	bandit {{projectname}}/*
-	pep257 {{projectname}}
-	prospector {{projectname}}
+	bandit ${PROJECTNAME}/*
+	pep257 ${PROJECTNAME}
+	prospector ${PROJECTNAME}
 	prospector tests
 
 test: ## run tests quickly with the default Python
