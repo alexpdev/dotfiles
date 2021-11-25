@@ -1,5 +1,28 @@
 include LICENSE
 include README.md
+include .prospector.yml
+include .pylintrc
+include setup.cfg
+include pyproject.toml
+include .gitignore
+include .gitattributes
+include .editorconfig
+include .vscodeignore
+include CHANGELOG.md
+include Makefile
+include settings.json
+include tox.ini
+include style.pss
+include tsconfig.json
+include .babelrc
+include .broswerslistrc
+include workflow.yml
+include markdownlint.json
+include mkdocs.yml
+include pep257.md
+recursive-include .github *
+recursive-include text_licenses *
+recursive-include markdown_licenses *
 
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]

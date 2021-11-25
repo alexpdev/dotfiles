@@ -7,16 +7,27 @@ member-warnings: true
 pep257:
   run: true
   disable:
-    - D203
+    - D210
     - D212
     - D213
     - D413
+    - D407
+    - D406
+    - D203
+
+pycodestyle:
+  disable:
+    - E741
 
 pep8:
   run: true
+  disable:
+    - E741
 
 pylint:
   run: true
+  disable:
+    - R1729
 
 bandit:
   run: true
@@ -26,3 +37,11 @@ pyroma:
 
 pyflakes:
   run: true
+  disable:
+    - F401
+
+
+mccabe:
+  run: true
+  disable:
+    - MC0001

@@ -48,7 +48,7 @@ setup(
     author=INFO["author"],
     author_email=INFO["email"],
     url=INFO["url"],
-    project_urls={"Source Code": "https://github.com/alexpdev/??????"},
+    project_urls={"Source Code": "https://github.com/alexpdev/dotfiles"},
     license=INFO["license"],
     packages=find_packages(),
     include_package_data=True,
