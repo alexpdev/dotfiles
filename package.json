@@ -1,7 +1,7 @@
 {
-  "name": "dotfiles",
-  "displayName": "asp",
-  "version": "0.1",
+  "name": "apdevdotfiles",
+  "displayName": "apdevdotfiles",
+  "version": "0.2.0",
   "description": "Default meta docs for new projects",
   "longDescription": "Default long description",
   "categories": [

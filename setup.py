@@ -20,6 +20,7 @@
 ############################################################################
 
 
+from importlib_metadata import entry_points
 from setuptools import setup, find_packages
 import json
 
@@ -51,6 +52,7 @@ setup(
     project_urls={"Source Code": "https://github.com/alexpdev/dotfiles"},
     license=INFO["license"],
     packages=find_packages(),
+    entry_points={"console_scripts": ["dotfiles = dotfiles:main"]},
     include_package_data=True,
     install_requires=[],
     setup_requires=["setuptools", "wheel"],
