@@ -48,21 +48,36 @@ clean-build: ## remove build artifacts
 	rm -fr .codacy-coverage
 
 lint: ## check style with flake8
-	black dotfiles
-	black dotfiles/metafiles
-	black setup.py
-	isort dotfiles
-	isort setup.py
-	pylint dotfiles
-	pycodestyle dotfiles
-	pydocstyle dotfiles
+	black ${PROJECTNAME}
+	black tests
+	isort ${PROJECTNAME}
+	isort tests
+	pylint ${PROJECTNAME} tests
+	pycodestyle ${PROJECTNAME} tests
+	pydocstyle ${PROJECTNAME} tests
 	pyroma .
+	bandit ${PROJECTNAME}/*
+	pep257 ${PROJECTNAME}
+	prospector ${PROJECTNAME}
+	prospector tests
 
+test: ## run tests quickly with the default Python
+	pytest tests
+	pytest tests --cov
+	pytest tests --pylint
 
-push: lint clean
+coverage: ## check code coverage quickly with the default Python
+	coverage run -m pytest tests --cov --pylint
+	coverage xml -o coverage.xml
+
+push: lint docs clean test coverage
 	git add .
 	git commit -m "generic message"
 	git push
+
+docs: ## generate Sphinx HTML documentation, including API docs
+	rm -rf docs
+	mkdocs build
 
 release: dist ## package and upload a release
 	twine upload dist/*

@@ -18,10 +18,11 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ############################################################################
-"""Setup module."""
+"""Setup Module."""
 
 import json
 
+from importlib_metadata import entry_points
 from setuptools import find_packages, setup
 
 INFO = json.load(open("./package.json"))
@@ -36,6 +37,13 @@ setup(
     long_description=long_description,
     classifiers=[
         "Development Status :: 3 - Alpha",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     keywords=INFO["keywords"],
     author=INFO["author"],
