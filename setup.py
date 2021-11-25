@@ -53,8 +53,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[],
-    tests_require=["pytest"],
-    setup_requires=["setuptools"],
+    setup_requires=["setuptools", "wheel"],
     zip_safe=False,
     test_suite="complete",
 )

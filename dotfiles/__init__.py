@@ -36,12 +36,12 @@ def populate_metafiles():
 
 
 
-def main(args):
+def main(args=None):
     """Parse command line arguments."""
     if not args:
         args = sys.argv[1:]
 
-    parser = argparse.ArgumentParser(sys.agv[0], description="populate meta files")
+    parser = argparse.ArgumentParser(sys.argv[0], description="populate meta files")
     subparsers = parser.add_subparsers()
     populate = subparsers.add_parser("populate")
     populate.set_defaults(func=populate_metafiles)
@@ -52,7 +52,7 @@ def main(args):
         metavar="<license>",
         dest="license",
         action="store",
-        )
+    )
 
 
     namespace = parser.parse_args(args)
@@ -86,3 +86,7 @@ def main(args):
         elif isc.match(name):
             lic = os.path.join(license_dir, "ISC.txt")
             shutil.copy(lic, CWD)
+
+
+if __name__ == '__main__':
+    main()
