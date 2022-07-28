@@ -4,7 +4,11 @@ autorun.bat
 __pycache__/
 *.py[cod]
 *$py.class
-
+venv/
+env/
+.venv/
+.env/
+.env
 # Prerequisites
 *.d
 

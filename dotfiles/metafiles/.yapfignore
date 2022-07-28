@@ -1,6 +1,0 @@
-env/
-docs/
-node_modules/
-img/
-.vscode/
-.mypy_cache/

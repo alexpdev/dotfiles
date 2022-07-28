@@ -1,17 +1,9 @@
 # ~~~ProjectName~~~ ChangeLog
 
-## Version
+-------------------
 
--------------------------
+## Version 0.1.0
 
-## Version [0.1.0]
+- <something goes here>
 
-### Added
-
-- initial commit
-
-### Fixed
-
-### Removed
-
--------------------------
+-------------------

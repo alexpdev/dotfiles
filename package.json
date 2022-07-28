@@ -1,7 +1,7 @@
 {
-  "name": "apdevdotfiles",
-  "displayName": "apdevdotfiles",
-  "version": "0.2.2",
+  "name": "ap-dotfiles",
+  "displayName": "ap-dotfiles",
+  "version": "0.1.0",
   "description": "Default meta docs for new projects",
   "longDescription": "Default long description",
   "categories": [
